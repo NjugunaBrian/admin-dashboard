@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate --schema schema/index.ts --out ./drizzle --dialect postgresql",
+    "db:migrate": "tsx ./scripts/migrate.ts",
+    "db:studio": "drizzle-kit studio --config db/drizzle.config.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.10.1",
@@ -21,6 +24,7 @@
     "react-dom": "^18",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
+    "tsx": "^4.19.1",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
@@ -29,7 +33,7 @@
     "@types/react-dom": "^18",
     "@types/uuid": "^10.0.0",
     "dotenv": "^16.4.5",
-    "drizzle-kit": "^0.21.0",
+    "drizzle-kit": "^0.26.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "postcss": "^8",
