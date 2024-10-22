@@ -3,6 +3,7 @@ import { relations, sql } from "drizzle-orm";
 import { decimal, integer, json, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
 import { OrderTable } from "./order-table";
 import { DownloadVerificationTable } from "./verification-table";
+import { StoreTable } from "./store-table";
 
 export const ProductTable = pgTable("product", {
     productId: varchar("productId").$defaultFn(() => generateUUID()).primaryKey().notNull(),
@@ -10,6 +11,7 @@ export const ProductTable = pgTable("product", {
     description: varchar("description").notNull(),
     price: decimal("price", {precision: 10, scale: 2 }).notNull().default("0"),
     images: json("images").$type<string[] | null>().default(null),
+    storeId: varchar("id").references(() => StoreTable.storeId).notNull(),
     inventory: integer("inventory").notNull().default(0),
     rating: integer("rating").notNull().default(0),
     tags: json("tags").$type<string[] | null>().default(null),
@@ -18,8 +20,12 @@ export const ProductTable = pgTable("product", {
 
 });
 
-export const ProductTableRelations = relations(ProductTable, ({ many }) => {
+export const ProductTableRelations = relations(ProductTable, ({ one, many }) => {
     return {
+        store: one(StoreTable, {
+            fields: [ProductTable.storeId],
+            references: [StoreTable.storeId]
+        }),
         orders: many(OrderTable),
         DownloadVerifications: many(DownloadVerificationTable),
     }

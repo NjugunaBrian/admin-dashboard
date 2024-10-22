@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS "product" (
 	"description" varchar NOT NULL,
 	"price" numeric(10, 2) DEFAULT '0' NOT NULL,
 	"images" json DEFAULT 'null'::json,
+	"id" varchar NOT NULL,
 	"inventory" integer DEFAULT 0 NOT NULL,
 	"rating" integer DEFAULT 0 NOT NULL,
 	"tags" json DEFAULT 'null'::json,
@@ -27,14 +28,27 @@ CREATE TABLE IF NOT EXISTS "downloadVerification" (
 	"updatedAt" timestamp NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "store" (
+	"id" varchar(30) PRIMARY KEY NOT NULL,
+	"user_id" varchar NOT NULL,
+	"name" varchar NOT NULL,
+	"description" text,
+	"slug" text,
+	"active" boolean DEFAULT false NOT NULL,
+	"stripeAccountId" varchar,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT current_timestamp,
+	CONSTRAINT "store_slug_unique" UNIQUE("slug")
+);
+--> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "order" ADD CONSTRAINT "order_userId_user_userId_fk" FOREIGN KEY ("userId") REFERENCES "public"."user"("userId") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "order" ADD CONSTRAINT "order_productId_product_productId_fk" FOREIGN KEY ("productId") REFERENCES "public"."product"("productId") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "order" ADD CONSTRAINT "order_productId_product_productId_fk" FOREIGN KEY ("productId") REFERENCES "public"."product"("productId") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "product" ADD CONSTRAINT "product_id_store_id_fk" FOREIGN KEY ("id") REFERENCES "public"."store"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
