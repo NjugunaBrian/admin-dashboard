@@ -10,8 +10,8 @@ interface SiteHeaderProps {
 
 const SiteHeader = ({children} : SiteHeaderProps) => {
   return (
-    <header className='flex justify-between items-center border-b py-4'>
-        <Link href={'/'} className='font-bold text-xl'>Mismatchd</Link>
+    <header className='flex justify-between items-center border-b h-16'>
+        <Link href={'/'} className='font-bold text-xl'>Food</Link>
         {children}
         <UserButton />
     </header>
