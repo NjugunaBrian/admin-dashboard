@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import {ClerkProvider, SignedIn, SignedOut, SignIn } from '@clerk/nextjs';
 import { ThemeProvider } from "@/components/themes/theme-provider";
+import SiteShell from "@/components/shells/site-shell";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,6 +39,9 @@ export default function RootLayout({
         <SignedIn>
         {children}
         </SignedIn>
+        <SiteShell>
+          {children}
+        </SiteShell>
         </ThemeProvider>
       </body>
     </html>
