@@ -37,11 +37,11 @@ export default function RootLayout({
           <SignIn routing="hash" />
         </SignedOut>
         <SignedIn>
-        {children}
-        </SignedIn>
         <SiteShell>
           {children}
         </SiteShell>
+        </SignedIn>
+
         </ThemeProvider>
       </body>
     </html>
