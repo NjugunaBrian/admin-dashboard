@@ -74,7 +74,7 @@ const StoreForm = ({ userId, setIsOpen } : StoreFormProps) => {
                     </FormItem>
                 )}
                 />
-                <FormField control={form.control} name="name" render={({ field }) => (
+                <FormField control={form.control} name="description" render={({ field }) => (
                     <FormItem>
                         <FormLabel>Description</FormLabel>
                         <FormControl>
