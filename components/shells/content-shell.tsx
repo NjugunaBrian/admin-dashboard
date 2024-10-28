@@ -9,7 +9,7 @@ interface ContentSectionProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 
-const AdminSection = ({ children, title, subtitle, className }: ContentSectionProps) => {
+const ContentShell = ({ children, title, subtitle, className }: ContentSectionProps) => {
 
     return (
         <div className={cn("space-y-6 min-h-[calc(100vh-5rem)] w-full my-4", className)}>
@@ -23,4 +23,4 @@ const AdminSection = ({ children, title, subtitle, className }: ContentSectionPr
 
 }
 
-export default AdminSection
+export default ContentShell
