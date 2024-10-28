@@ -4,6 +4,7 @@ import "./globals.css";
 import {ClerkProvider, SignedIn, SignedOut, SignIn } from '@clerk/nextjs';
 import { ThemeProvider } from "@/components/themes/theme-provider";
 import SiteShell from "@/components/shells/site-shell";
+import { Toaster } from "sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -39,6 +40,7 @@ export default function RootLayout({
         <SignedIn>
         <SiteShell>
           {children}
+          <Toaster />
         </SiteShell>
         </SignedIn>
 

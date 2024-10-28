@@ -1,10 +1,20 @@
+import { getAllStores } from '@/actions/store';
+import CreateStore from '@/app/(admin)/_components/create-store';
+import AdminSection from '@/components/shells/admin-section';
+import { auth } from '@clerk/nextjs/server';
 import React from 'react'
 
-const page = () => {
+const page = async () => {
+
+  const { userId } = auth();
+  const { data } = await getAllStores();
   return (
-    <div>
-        Store Page
-    </div>
+    <AdminSection title="stores" subtitle='Manage your stores'>
+      <CreateStore userId={userId!} />
+      {JSON.stringify(data)}
+
+    </AdminSection>
+    
   )
 }
 

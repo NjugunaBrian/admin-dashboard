@@ -14,7 +14,7 @@ const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
                 </aside>
 
             </div>
-            <div className='w-full'>
+            <div className='w-full px-4 py-2'>
             {children}
             </div>
         </div>
