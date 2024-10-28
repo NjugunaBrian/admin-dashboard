@@ -1,3 +1,5 @@
+"use client"
+
 import { adminConfig } from "@/config/site-config";
 import { cn } from "@/lib/utils";
 import Link from "next/link";

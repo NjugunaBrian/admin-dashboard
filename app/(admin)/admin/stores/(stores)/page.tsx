@@ -9,7 +9,7 @@ const page = async () => {
   const { userId } = auth();
   const { data } = await getAllStores();
   return (
-    <AdminSection title="stores" subtitle='Manage your stores'>
+    <AdminSection title="Stores" subtitle='Manage your stores'>
       <CreateStore userId={userId!} />
       {JSON.stringify(data)}
 

@@ -8,6 +8,13 @@
       "when": 1729614915813,
       "tag": "0000_clean_korvac",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1730114044390,
+      "tag": "0001_special_pestilence",
+      "breakpoints": true
     }
   ]
 }

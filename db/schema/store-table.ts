@@ -4,8 +4,8 @@ import { boolean, pgTable, text, timestamp, varchar } from "drizzle-orm/pg-core"
 import { ProductTable } from "./product-table";
 
 export const StoreTable = pgTable("store", {
-    storeId: varchar("id", { length: 30 }).$defaultFn(() => generateUUID()).primaryKey(),
-    userId: varchar("user_id").notNull(),
+    storeId: varchar("id").$defaultFn(() => generateUUID()).primaryKey(),
+    userId: varchar("userId").notNull(),
     name: varchar("name").notNull(),
     description: text("description"),
     slug: text("slug").unique(),
