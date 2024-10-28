@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import {ClerkProvider, SignedIn, SignedOut, SignIn } from '@clerk/nextjs';
+import { ClerkProvider } from '@clerk/nextjs';
 import { ThemeProvider } from "@/components/themes/theme-provider";
 import SiteShell from "@/components/shells/site-shell";
 import { Toaster } from "sonner";
@@ -34,15 +34,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex items-center justify-center`}
       >
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
-        <SignedOut>
-          <SignIn routing="hash" />
-        </SignedOut>
-        <SignedIn>
+        
         <SiteShell>
           {children}
           <Toaster />
         </SiteShell>
-        </SignedIn>
 
         </ThemeProvider>
       </body>
