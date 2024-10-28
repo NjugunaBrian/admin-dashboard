@@ -3,6 +3,7 @@
 import db from "@/db/drizzle";
 import { StoreTable } from "@/db/schema";
 import { slugify } from "@/lib/utils";
+import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 export type CreateStoreProps = {
@@ -58,3 +59,20 @@ export const createStore = async (input: CreateStoreProps) => {
     }
 
 };
+
+//GET SINGLE STORE
+export const getSingleStore = async (storeId: string) => {
+    try {
+        const store = await db.query.StoreTable.findFirst({
+            where: eq(StoreTable.storeId, storeId)
+        });
+
+        if(!store){
+            throw new Error("Store not found.")
+        }
+        return store;
+    } catch (error) {
+        console.error(error);
+
+    }
+}
