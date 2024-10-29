@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { useDropzone } from "@uploadthing/react";
-import { generateClientDropzoneAccept } from "@uploadthing/client";
+import { generateClientDropzoneAccept } from "@uploadthing";
 import { toast } from "sonner";
 import Image from "next/image";
 import { Cross2Icon, UpdateIcon } from "@radix-ui/react-icons";
@@ -31,7 +31,7 @@ export const MultiUploader = ({ addFiles, triggerDialog}: { addFiles: (to: FileR
         setFiles(updatedFiles)
     }, [files])
 
-    const { startUpload, permittedFileInfo } = useUploadThing("imageUploader", {
+    const { startUpload } = useUploadThing("imageUploader", {
         onClientUploadComplete: (fileUrl) => {
             console.log("response", fileUrl)
             addFiles(fileUrl);
@@ -63,7 +63,8 @@ export const MultiUploader = ({ addFiles, triggerDialog}: { addFiles: (to: FileR
 
     };
 
-    const fileTypes = permittedFileInfo?.config ? Object.keys(permittedFileInfo?.config) : [];
+    //const fileTypes = permittedFileInfo?.config ? Object.keys(permittedFileInfo?.config) : [];
+    const fileTypes = ['image/png', 'image/jpeg', 'image/jpg'];
 
     const removeItem = (index: number) => {
         const newFiles = [...files];

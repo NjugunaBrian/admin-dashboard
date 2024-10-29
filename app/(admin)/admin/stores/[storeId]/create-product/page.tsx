@@ -1,5 +1,6 @@
 "use client";
 
+import ProductForm from '@/components/forms/product-form';
 import ContentShell from '@/components/shells/content-shell';
 import { usePathname } from 'next/navigation'
 import React from 'react'
@@ -7,10 +8,10 @@ import React from 'react'
 const Page = () => {
 
     const pathname = usePathname()
-    const id = pathname.split('/').slice(-2)[0];
+    const storeId = pathname.split('/').slice(-2)[0];
   return (
     <ContentShell title='Create a new product' subtitle='Create a new product to add to your store'>
-        {id}
+        <ProductForm storeId={storeId} />
     </ContentShell>
   )
 }
