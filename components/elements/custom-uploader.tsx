@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { useDropzone } from "@uploadthing/react";
-import { generateClientDropzoneAccept } from "@uploadthing";
+import { generateClientDropzoneAccept } from "uploadthing/client";
 import { toast } from "sonner";
 import Image from "next/image";
 import { Cross2Icon, UpdateIcon } from "@radix-ui/react-icons";
@@ -87,7 +87,7 @@ export const MultiUploader = ({ addFiles, triggerDialog}: { addFiles: (to: FileR
 
                     </div>
                     <div className="text-center">
-                        <p className="font-bold">Drag and drop some files here &lsquo or click to select some files</p>
+                        <p className="font-bold">Drag and drop some files here or click to select some files</p>
                         <p className="text-sm text-muted-foreground">You can upload up to 8 files (max 4mb each)</p>
                     </div>
                 </div>

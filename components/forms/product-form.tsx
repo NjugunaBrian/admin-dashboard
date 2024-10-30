@@ -31,7 +31,7 @@ type ProductFormProps = {
     formData?: ProductFormData
 }
 
-const ProductForm = ({ storeId }: ProductFormProps) => {
+const ProductForm = ({ storeId, formData }: ProductFormProps) => {
 
     const [isSubmitting, setIsSubmitting]  = useState(false);
     const [fileUrls, setFileUrls] = useState<FileResponse[]>([]);
@@ -39,11 +39,11 @@ const ProductForm = ({ storeId }: ProductFormProps) => {
     const form = useForm<InputSchema>({
         resolver: zodResolver(productSchema),
         defaultValues: {
-            name: '',
-            description: '',
-            price: '0',
-            inventory: '0',
-            tags: ''
+            name: formData?.name ||'',
+            description: formData?.description || '',
+            price: formData?.price || '0',
+            inventory: formData?.inventory ||'0',
+            tags: formData?.tags ||''
         }
     })
 
@@ -82,7 +82,7 @@ const ProductForm = ({ storeId }: ProductFormProps) => {
                     <FormItem>
                         <FormLabel>Store name</FormLabel>
                         <FormControl>
-                            <Input placeholder='Add store name' {...field} />
+                            <Input placeholder='Add a store name' {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
@@ -102,7 +102,7 @@ const ProductForm = ({ storeId }: ProductFormProps) => {
                    )}
                 />
 
-                <div className='flex gap-4'> 
+                <div className='flex gap-4 mb-4'> 
                 <FormField
                    control={form.control}
                    name='price'
@@ -160,7 +160,8 @@ const ProductForm = ({ storeId }: ProductFormProps) => {
                 <div className='flex items-center justify-between'>
                     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                         <DialogTrigger asChild>
-                            <Button type='button' variant={'ghost'} size={'icon'}>
+                            <Button type='button' className='space-x-1' variant={'outline'}>
+                                <span>Add Images</span>
                                 <ImageIcon />
                             </Button>
                         </DialogTrigger>
