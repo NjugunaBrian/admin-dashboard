@@ -1,6 +1,6 @@
 {
-  "id": "75d10727-2d9c-4dc1-876c-50317ae8f56d",
-  "prevId": "1b50aa08-05d1-431a-ae6c-329ab837a92d",
+  "id": "ad98f8f0-4f29-46c7-89dc-591f00bb2e6c",
+  "prevId": "75d10727-2d9c-4dc1-876c-50317ae8f56d",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -27,11 +27,25 @@
           "primaryKey": false,
           "notNull": true
         },
-        "productId": {
-          "name": "productId",
+        "storeId": {
+          "name": "storeId",
           "type": "varchar",
           "primaryKey": false,
           "notNull": true
+        },
+        "is_Paid": {
+          "name": "is_Paid",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "address": {
+          "name": "address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "''"
         },
         "createdAt": {
           "name": "createdAt",
@@ -50,9 +64,46 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "order_productId_product_productId_fk": {
-          "name": "order_productId_product_productId_fk",
+        "order_storeId_store_storeId_fk": {
+          "name": "order_storeId_store_storeId_fk",
           "tableFrom": "order",
+          "tableTo": "store",
+          "columnsFrom": [
+            "storeId"
+          ],
+          "columnsTo": [
+            "storeId"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "public.orderItem": {
+      "name": "orderItem",
+      "schema": "",
+      "columns": {
+        "orderId": {
+          "name": "orderId",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "productId": {
+          "name": "productId",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "orderItem_productId_product_productId_fk": {
+          "name": "orderItem_productId_product_productId_fk",
+          "tableFrom": "orderItem",
           "tableTo": "product",
           "columnsFrom": [
             "productId"
@@ -60,7 +111,20 @@
           "columnsTo": [
             "productId"
           ],
-          "onDelete": "cascade",
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "orderItem_orderId_order_orderId_fk": {
+          "name": "orderItem_orderId_order_orderId_fk",
+          "tableFrom": "orderItem",
+          "tableTo": "order",
+          "columnsFrom": [
+            "orderId"
+          ],
+          "columnsTo": [
+            "orderId"
+          ],
+          "onDelete": "no action",
           "onUpdate": "no action"
         }
       },
@@ -148,15 +212,15 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "product_id_store_id_fk": {
-          "name": "product_id_store_id_fk",
+        "product_id_store_storeId_fk": {
+          "name": "product_id_store_storeId_fk",
           "tableFrom": "product",
           "tableTo": "store",
           "columnsFrom": [
             "id"
           ],
           "columnsTo": [
-            "id"
+            "storeId"
           ],
           "onDelete": "no action",
           "onUpdate": "no action"
@@ -220,8 +284,8 @@
       "name": "store",
       "schema": "",
       "columns": {
-        "id": {
-          "name": "id",
+        "storeId": {
+          "name": "storeId",
           "type": "varchar",
           "primaryKey": true,
           "notNull": true

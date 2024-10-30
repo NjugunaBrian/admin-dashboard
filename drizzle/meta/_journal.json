@@ -3,17 +3,10 @@
   "dialect": "postgresql",
   "entries": [
     {
-      "idx": 0,
-      "version": "7",
-      "when": 1729614915813,
-      "tag": "0000_clean_korvac",
-      "breakpoints": true
-    },
-    {
       "idx": 1,
       "version": "7",
-      "when": 1730114044390,
-      "tag": "0001_special_pestilence",
+      "when": 1730298454827,
+      "tag": "0001_real_hex",
       "breakpoints": true
     }
   ]
