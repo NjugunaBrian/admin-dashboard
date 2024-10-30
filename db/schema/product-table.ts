@@ -31,4 +31,4 @@ export const ProductTableRelations = relations(ProductTable, ({ one, many }) => 
     }
 });
 
-export const Product = typeof ProductTable.$inferSelect;
+export type Product = typeof ProductTable.$inferSelect;

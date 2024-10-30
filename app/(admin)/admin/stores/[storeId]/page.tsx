@@ -5,10 +5,13 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation'
 import { PlusIcon } from '@radix-ui/react-icons';
 import { toast } from 'sonner';
-import ContentShell from '@/components/shells/content-shell';
 import { Button } from '@/components/ui/button';
+import ContentShell from '@/components/shells/content-shell';
 import { Store } from '@/db/schema/store-table';
 import { getSingleStore } from '@/actions/store';
+import { Product } from '@/db/schema';
+import { getStoreProducts } from '@/actions/product';
+import ProductTable from '../../_components/product-table';
 
 
 
@@ -16,11 +19,13 @@ const Page = () => {
 
   const { storeId } = useParams();
   const [ storeData, setStoreData ] = useState<Store | null>(null);
+  const [productsData, setProductsData] = useState<Product[] | null >(null)
 
   const getStoreData = async() => {
     try {
-      const data = await getSingleStore(storeId as string);
-      setStoreData(data!);
+      const [store, products] = await Promise.all([getSingleStore(storeId as string), getStoreProducts(storeId as string)])
+      setStoreData(store!)
+      setProductsData(products!)
 
     } catch{
       toast.error("An unexpected error occurred")
@@ -41,6 +46,8 @@ const Page = () => {
           </Button>
       
         </Link>
+        
+        {productsData && <ProductTable products={productsData} />}
 
     </ContentShell>
   )
