@@ -1,3 +1,5 @@
+"use server";
+
 import db from "@/db/drizzle"
 import { OrderTable, ProductTable } from "@/db/schema";
 import { count, eq } from "drizzle-orm";
