@@ -3,11 +3,11 @@ import React from 'react'
 
 const layout = ({children}: Readonly<{children: React.ReactNode}>) => {
   return (
-    <div>
-        <SiteHeader>
-            placeholder
-        </SiteHeader>
-        {children}
+    <div className='space-y-4'>
+        <SiteHeader />
+        <div className='space-y-24'>
+          {children}
+        </div>
     </div>
   )
 }

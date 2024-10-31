@@ -2,6 +2,7 @@
 import { getSalesCount, getStockCount, getTotalRevenue } from "@/actions/dashboard-values"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { formatCurrency } from "@/lib/utils"
+import ContentShell from "@/components/shells/content-shell"
 
 type DashboardCardProps = {
     title: string,
@@ -29,6 +30,7 @@ const Dashboard = async () => {
     const [totalRevenue, salesCount, stockCount ] = await Promise.all([getTotalRevenue(), getSalesCount(), getStockCount()]);
 
     return (
+        <ContentShell title="Dashboard" subtitle="Stats for your site.">
         <div className='grid grid-cols-3 gap-2'>
         { /* Revenue */ }
         <DashboardCard title={"Revenue"} value={formatCurrency(totalRevenue!)} />
@@ -40,6 +42,7 @@ const Dashboard = async () => {
         <DashboardCard title={"In Stock"} value={formatCurrency(stockCount?.count || 0)} />
 
         </div>
+        </ContentShell>
     )
 }
 
