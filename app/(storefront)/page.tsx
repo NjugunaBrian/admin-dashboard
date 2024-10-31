@@ -2,6 +2,7 @@ import React from 'react'
 //import Image from 'next/image'
 import FeatureProducts from './_components/feature-products'
 import FeatureStores from './_components/feature-stores'
+import StorefrontBanner from './_components/storefront-banner'
 
 const Home = () => {
   return (
@@ -14,8 +15,13 @@ const Home = () => {
           height={400}
           width={1400} 
         />
+
       </div>
       */}
+      <div className='h-[calc(100vh-9rem)]'>
+      <StorefrontBanner />
+      </div>
+    
       <div className='w-full max-w-[1200px] space-y-16'>
         <FeatureProducts />
         <FeatureStores />
