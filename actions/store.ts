@@ -76,3 +76,14 @@ export const getSingleStore = async (storeId: string) => {
 
     }
 }
+
+//GET FEATURED STORES 
+export const getFeaturedStores = async() => {
+    try{ 
+        const stores = await db.select().from(StoreTable).limit(5)
+        return stores
+
+    } catch (err){
+        console.error(err);
+    }
+}

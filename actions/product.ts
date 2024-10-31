@@ -39,8 +39,20 @@ export const getStoreProducts = async(storeId: string) => {
             where: eq(ProductTable.storeId, storeId)
         });
         return storeProducts
-        
+
     } catch (err) {
         console.error(err)
+    }
+}
+
+//GET FEATURED PRODUCTS
+
+export const getFeaturedProducts = async() => {
+    try{
+        const products = await db.select().from(ProductTable).limit(5)
+        return products
+
+    } catch (err){
+        console.error(err);
     }
 }

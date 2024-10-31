@@ -4,16 +4,17 @@ import React, { ReactNode } from 'react'
 import UserButton from '../elements/user-button'
 import { Button } from '../ui/button'
 import CartSheet from '../cart/card-sheet'
+import { cn } from '@/lib/utils'
 
 
-interface SiteHeaderProps {
+interface SiteHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: ReactNode,
 }
 
 
-const SiteHeader = ({children} : SiteHeaderProps) => {
+const SiteHeader = ({children, className } : SiteHeaderProps) => {
   return (
-    <header className='flex justify-between items-center border-b h-16 gap-2'>
+    <header className={cn('flex z-50 justify-between items-center border-b h-16 gap-2 sticky top-0 left-0 right-0 bg-background', className)}>
         <Link href={'/'} className='font-bold text-xl'>Vinyls</Link>
         {/* {children && <CartSheet />} */}
         {children}
