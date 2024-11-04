@@ -32,6 +32,18 @@ export const createProduct = async (productData: ProductData) => {
 
 }
 
+//GET PRODUCTS
+export const getProducts = async () => {
+    try{
+        const products = await db.select().from(ProductTable);
+
+        return products;
+
+    } catch (err){
+        console.error(err)
+    }
+}
+
 //GET STORE PRODUCTS
 export const getStoreProducts = async(storeId: string) => {
     try {
