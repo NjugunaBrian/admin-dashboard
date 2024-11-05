@@ -45,8 +45,10 @@ const CartProvider: React.FC<CartProviderProps> = ({children}) => {
         localStorage.setItem('cart', JSON.stringify(cartItems));
     }, [cartItems]);
 
-    const cartQuantity = cartItems.reduce((quantity, item) => quantity + item.quantity, 0)
-
+    const cartQuantity = Array.isArray(cartItems)
+    ? cartItems.reduce((quantity, item) => quantity + item.quantity, 0)
+    : 0;
+      
     const getItemQuantity = (itemId: string) => {
         return cartItems.find(item => item.productId === itemId)?.quantity || 0;
     }

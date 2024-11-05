@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React, { ReactNode } from 'react'
 import UserButton from '../elements/user-button'
 import { Button } from '../ui/button'
-import CartSheet from '../cart/card-sheet'
+import CartSheet from '../cart/cart-sheet'
 import { cn } from '@/lib/utils'
 
 
