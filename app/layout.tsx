@@ -8,6 +8,7 @@ import { Toaster } from "sonner";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
+import CartProvider from "@/components/cart/cart-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,11 +39,12 @@ export default function RootLayout({
       >
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-        
-        <SiteShell>
-          {children}
-          <Toaster />
-        </SiteShell>
+            <CartProvider>
+              <SiteShell>
+                {children}
+                <Toaster />
+              </SiteShell>
+            </CartProvider>  
 
         </ThemeProvider>
       </body>
