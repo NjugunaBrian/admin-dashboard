@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getFeaturedStores } from "@/actions/store"
 import FeatureContent from "./feature-content";
 import StoreCard from "@/components/elements/store-card";
@@ -10,12 +11,14 @@ const FeatureStores = async () => {
         <FeatureContent title='Feature Stores' subtitle='Explore stores we think you might love' href='/products' linkName='View Products'>
             <div className='w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2'>
                 {stores?.map((store) => (
+                    <Link href={`/store/${store.storeId}`} key={store.storeId}>
                     <StoreCard
                        key={store.storeId}
                        name={store.name}
                        description={store.description!}
                        className='h-48'
                     />
+                    </Link>
                 ))}
             </div>
             

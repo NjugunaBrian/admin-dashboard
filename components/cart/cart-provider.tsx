@@ -39,7 +39,7 @@ const CartProvider: React.FC<CartProviderProps> = ({children}) => {
 
     const cartString = localStorage.getItem('cart');
     const parsedCart = cartString ? JSON.parse(cartString) : [];
-    const [cartItems, setCartItems] = useState<CartProduct[] | []>(parsedCart);
+    const [cartItems, setCartItems] = useState<CartProduct[]>(Array.isArray(parsedCart) ? parsedCart : []);
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems));
@@ -50,11 +50,13 @@ const CartProvider: React.FC<CartProviderProps> = ({children}) => {
     : 0;
       
     const getItemQuantity = (itemId: string) => {
-        return cartItems.find(item => item.productId === itemId)?.quantity || 0;
-    }
+        return Array.isArray(cartItems)
+            ? cartItems.find(item => item.productId === itemId)?.quantity || 0
+            : 0;
+    };
 
     const addToCart = (item: Product) => {
-        setCartItems((prevItems) => [...prevItems, { ...item, quantity: 1 }])
+        setCartItems((prevItems) => [...(prevItems || []), { ...item, quantity: 1 }]);
     }
 
     const removeFromCart = (itemId: string) => {

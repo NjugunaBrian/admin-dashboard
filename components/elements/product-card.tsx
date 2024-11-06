@@ -29,7 +29,7 @@ const ProductCard = (product: Product) => {
             </div>
             </Link>
             <div>
-                <Link href={`/product/${product.productId}`} className='flex flex-col justify-self-end'>
+                <Link href={`/product/${product.productId}`} className='flex flex-col items-center'>
                 <h1 className='text-muted-foreground'>{product.name}</h1>
                 <div className='flex'>
                     {Array(filledStars).fill([]).map((_, index) => (
