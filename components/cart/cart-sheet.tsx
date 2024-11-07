@@ -1,16 +1,37 @@
 "use client";
-
+import React, { useEffect } from "react"
 import Image from "next/image";
+import axios from "axios";
 import { Button } from "../ui/button"
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet"
+import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet"
 import { CartProduct, useCart } from "./cart-provider";
 import { formatCurrency } from "@/lib/utils";
 import { MinusIcon, PlusIcon } from "@radix-ui/react-icons";
+import { useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 
 
 const CartSheet = () => {
 
     const { cartQuantity, cartItems } = useCart();
+    const  searchParams = useSearchParams();
+
+    useEffect(() => {
+        if(searchParams.get("success")){
+            toast.success("Payment completed.")
+        }
+        if(searchParams.get("cancelled")){
+            toast.error("Something went wrong!")
+        }
+    }, [searchParams])
+
+    const checkout = async () => {
+        const response = await axios.post('/api/checkout', {
+            cartItems: cartItems
+        })
+
+        window.location = response.data.url;
+    }
 
     return (
         <Sheet>
@@ -38,6 +59,11 @@ const CartSheet = () => {
                         : null}
                     </SheetDescription>
                 </SheetHeader>
+                <SheetFooter>
+                    <Button className="rounded-full w-full" size={'lg'} disabled={cartItems.length < 0} onClick={checkout}>
+                        Checkout
+                    </Button>
+                </SheetFooter>
             </SheetContent>
         </Sheet>
 

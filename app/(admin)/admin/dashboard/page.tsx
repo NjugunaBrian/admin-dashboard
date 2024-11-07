@@ -1,7 +1,7 @@
 "usee client";
 import { getSalesCount, getStockCount, getTotalRevenue } from "@/actions/dashboard-values"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { formatCurrency } from "@/lib/utils"
+import { formatCurrency, formatNumber } from "@/lib/utils"
 import ContentShell from "@/components/shells/content-shell"
 
 type DashboardCardProps = {
@@ -33,15 +33,20 @@ const Dashboard = async () => {
         <ContentShell title="Dashboard" subtitle="Stats for your site.">
         <div className='grid grid-cols-3 gap-2'>
         { /* Revenue */ }
-        <DashboardCard title={"Revenue"} value={formatCurrency(totalRevenue!)} />
+        <DashboardCard title={"Revenue"} value={formatCurrency(totalRevenue || 0)} />
 
         { /* Sales */ }
-        <DashboardCard title={"Sales"} value={formatCurrency(salesCount?.count || 0)} />
+        <DashboardCard title={"Sales"} value={formatNumber(salesCount?.count || 0)} />
 
         { /* Stock */ }
-        <DashboardCard title={"In Stock"} value={formatCurrency(stockCount?.count || 0)} />
+        <DashboardCard title={"In Stock"} value={formatNumber(stockCount?.count || 0)} />
 
         </div>
+        {/*{`tr - ${totalRevenue}`}
+        {`sales - ${salesCount}`}
+        {`stock - ${stockCount}`}
+        */}
+
         </ContentShell>
     )
 }

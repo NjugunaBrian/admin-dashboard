@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { formatCurrency } from "@/lib/utils"
 import { DotsHorizontalIcon } from "@radix-ui/react-icons"
 
 type PurchaseItem = {
@@ -10,7 +9,6 @@ type PurchaseItem = {
     isPaid: boolean | null,
     products: string,
     totalPrice: string,
-    storeName: string,
     createdAt: Date
 
 }
@@ -34,10 +32,9 @@ const PurchasesTable = ({ purchases }: { purchases: PurchaseItem[] }) => {
                 {purchases.map((purchase, index) => (
                     <TableRow key={index}>
                         <TableCell>{purchase.products}</TableCell>
-                        <TableCell>{purchase.storeName}</TableCell>
                         <TableCell className='capitalize'>{purchase.address}</TableCell>
-                        <TableCell>{formatCurrency(Number(purchase.totalPrice))}</TableCell>
-                        <TableCell>{purchase.isPaid}</TableCell>
+                        <TableCell>{purchase.totalPrice}</TableCell>
+                        <TableCell>{purchase.isPaid == true ? 'true' : 'false'}</TableCell>
 
                         <TableCell>
                             <DropdownMenu>

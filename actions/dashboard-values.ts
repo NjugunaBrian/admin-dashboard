@@ -10,19 +10,11 @@ import { count, eq } from "drizzle-orm";
 
 export const getTotalRevenue = async () => {
     try{
-        const paidOrders = await db.query.OrderTable.findMany({
-            with: {
-                orderItems: {
-                    with: {
-                        product: true
-                    }
-                },
-            }
-        })
+        const paidOrders = await db.query.OrderTable.findMany();
 
         const totalRevenue = paidOrders.reduce((total, order) => {
-            const orderTotal = order.orderItems.reduce((orderSum, item) => {
-                return orderSum + parseFloat(item.product.price);
+            const orderTotal = order!.products!.reduce((orderSum, item) => {
+                return orderSum + parseFloat(item.price);
             }, 0);
 
             return total = orderTotal

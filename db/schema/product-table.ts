@@ -3,7 +3,6 @@ import { relations, sql } from "drizzle-orm";
 import { decimal, integer, json, pgTable, timestamp, varchar } from "drizzle-orm/pg-core";
 import { DownloadVerificationTable } from "./verification-table";
 import { StoreTable } from "./store-table";
-import { OrderItemTable } from "./order-item-table";
 
 export const ProductTable = pgTable("product", {
     productId: varchar("productId").$defaultFn(() => generateUUID()).primaryKey().notNull(),
@@ -27,7 +26,6 @@ export const ProductTableRelations = relations(ProductTable, ({ one, many }) => 
             references: [StoreTable.storeId]
         }),
         DownloadVerifications: many(DownloadVerificationTable),
-        orderItems: many(OrderItemTable)
     }
 });
 
