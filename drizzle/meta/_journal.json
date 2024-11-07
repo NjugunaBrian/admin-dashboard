@@ -8,6 +8,13 @@
       "when": 1730298454827,
       "tag": "0001_real_hex",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1730995003304,
+      "tag": "0002_great_micromax",
+      "breakpoints": true
     }
   ]
 }
