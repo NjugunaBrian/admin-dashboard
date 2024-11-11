@@ -10,7 +10,7 @@ export const CategoryTable = pgTable("category", {
 
 export const CategoryTableRelations = relations(CategoryTable, ({ many }) => {
     return {
-        subcategories: many(CategoryTable)
+        subcategories: many(SubCategoryTable)
     }
 })
 

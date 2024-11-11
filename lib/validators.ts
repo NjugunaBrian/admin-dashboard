@@ -12,3 +12,12 @@ export const productSchema = z.object({
     inventory: z.string().default('0'),
     tags: z.string().min(3).max(50)
 })
+
+export const categorySchema = z.object({
+    title: z.string().min(3).max(50),
+})
+
+export const subcategorySchema = z.object({
+    title: z.string().min(3).max(50),
+    description: z.string().min(3).max(255),
+})
