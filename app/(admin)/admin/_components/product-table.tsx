@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
@@ -5,6 +6,7 @@ import { formatCurrency } from "@/lib/utils"
 import { Product } from '@/db/schema';
 
 import { DotsHorizontalIcon } from "@radix-ui/react-icons"
+import ProductDelete from "./product-delete"
 
 interface ProductTableProps {
     products: Product[]
@@ -44,8 +46,10 @@ const ProductTable = ({ products }: ProductTableProps) => {
                                     </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align='end'>
-                                    <DropdownMenuItem>Edit</DropdownMenuItem>
-                                    <DropdownMenuItem>Delete</DropdownMenuItem>
+                                    <Link href={`/admin/stores/edit-product/${product.productId}`}>
+                                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                                    </Link>
+                                    <ProductDelete productId={product.productId} />
 
                                 </DropdownMenuContent>
                             </DropdownMenu>

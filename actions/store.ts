@@ -89,7 +89,6 @@ export const getFeaturedStores = async() => {
 }
 
 //GET SINGLE STORE WITH PRODUCTS
-
 export const getSingleStoreProducts = async(storeId: string) => {
     try{
         const store = await db.query.StoreTable.findFirst({
@@ -106,5 +105,16 @@ export const getSingleStoreProducts = async(storeId: string) => {
 
     } catch(err){
         console.error(err)
+    }
+}
+
+//DELETE STORE
+export const deleteStore = async(storeId: string) => {
+    try{
+      const deletedStore = await db.delete(StoreTable).where(eq(StoreTable.storeId, storeId))
+      return "Store deleted successfully"
+      
+    } catch(err){
+        console.error(err);
     }
 }
