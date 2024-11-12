@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { z } from 'zod';
 import Image from "next/image";
 import { useForm } from 'react-hook-form';
@@ -18,6 +18,7 @@ import FileInput from '../elements/file-input';
 import { productSchema } from '../../lib/validators';
 import { FileResponse } from '@/lib/types';
 import { createProduct } from '@/actions/product';
+import { getCategories } from '@/actions/site';
 
 type InputSchema = z.infer<typeof productSchema>
 
@@ -31,21 +32,44 @@ type ProductFormProps = {
     formData?: ProductFormData
 }
 
+type Category = {
+    categoryId: string,
+    title: string,
+    subcategories: {
+        categoryId: string | null,
+        title: string,
+        description: string,
+        subcategoryId: string
+    }[],
+}
+
 const ProductForm = ({ storeId, formData }: ProductFormProps) => {
 
     const [isSubmitting, setIsSubmitting]  = useState(false);
     const [fileUrls, setFileUrls] = useState<FileResponse[]>([]);
     const [dialogOpen, setDialogOpen] = useState(false);
+    const [categories, setCategories] = useState<Category[]>([])
     const form = useForm<InputSchema>({
         resolver: zodResolver(productSchema),
         defaultValues: {
             name: formData?.name ||'',
             description: formData?.description || '',
+            category: formData?.category || '',
+            subcategory: formData?.subcategory || '',
             price: formData?.price || '0',
             inventory: formData?.inventory ||'0',
             tags: formData?.tags ||''
         }
-    })
+    });
+
+    const fetchCategories = async() => {
+        const data = await getCategories();
+        setCategories(data!);
+    }
+
+    useEffect(() => {
+        fetchCategories()
+    },[])
 
     const onSubmit = async(values: InputSchema) => {
         const { name, description, price, inventory, tags } = values;
@@ -135,7 +159,7 @@ const ProductForm = ({ storeId, formData }: ProductFormProps) => {
                     name='tags'
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel>Tags</FormLabel>
                             <Select onValueChange={field.onChange}>
                                 <FormControl>
                                     <SelectTrigger>
@@ -153,6 +177,64 @@ const ProductForm = ({ storeId, formData }: ProductFormProps) => {
 
                     )}
                 />
+                <FormField 
+                    control={form.control}
+                    name='category'
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Set Category</FormLabel>
+                            <FormControl>
+                            <Select onValueChange={field.onChange}>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Category" />
+                                    </SelectTrigger>
+                                <SelectContent>
+                                    {categories.map((cat) => (
+                                        <SelectItem key={cat.categoryId} value={cat.title}>
+                                            {cat.title}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                                
+                            </Select>
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+
+                    )}
+                />
+
+                <FormField 
+                    control={form.control}
+                    name='subcategory'
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Set sub-category</FormLabel>
+                            <FormControl>
+                            <Select onValueChange={field.onChange}>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Sub-category" />
+                                    </SelectTrigger>
+                                <SelectContent>
+                                    {categories.map((category) => (
+                                        <div key={category.categoryId}>
+                                            {category.subcategories.map((subcategory) => (
+                                                <SelectItem value={subcategory.title} key={subcategory.subcategoryId}>
+                                                    {subcategory.title}
+                                                </SelectItem>
+                                            ))}
+                                        </div>
+                                    ))}
+                                </SelectContent>
+                                
+                            </Select>
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+
+                    )}
+                />
+                
 
 
                 </div>

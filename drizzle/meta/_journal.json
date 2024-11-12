@@ -15,6 +15,13 @@
       "when": 1730995003304,
       "tag": "0002_great_micromax",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1731423774588,
+      "tag": "0003_blushing_ultimates",
+      "breakpoints": true
     }
   ]
 }
