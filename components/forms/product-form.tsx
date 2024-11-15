@@ -17,16 +17,11 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import FileInput from '../elements/file-input';
 import { productSchema } from '../../lib/validators';
 import { FileResponse } from '@/lib/types';
-import { createProduct, updateProduct } from '@/actions/product';
+import { createOrUpdateProduct, createProduct, updateProduct } from '@/actions/product';
 import { getCategories } from '@/actions/site';
 import { Product } from '@/db/schema';
 
 type InputSchema = z.infer<typeof productSchema>
-
-type ProductFormData = {
-    storeId: string,
-    product?: Product,
-}
 
 type ProductFormProps = {
     storeId: string,
@@ -59,7 +54,7 @@ const ProductForm = ({ storeId, productData }: ProductFormProps) => {
             subcategory: productData?.subcategory || '',
             price: productData?.price || '0',
             inventory: productData?.inventory.toString() ||'0',
-            tags: productData?.tags?.toString() ||''
+            tags: productData?.tags![0] ||''
         }
     });
 
@@ -76,22 +71,16 @@ const ProductForm = ({ storeId, productData }: ProductFormProps) => {
         const { name, description, price, inventory, tags, category, subcategory } = values;
         
         const productForm = { name, description, price, inventory: Number(inventory), tags: [tags], 
-            storeId, category, subcategory, images: fileUrls.map((fileResponse) => fileResponse.serverData.fileUrl)}
+            storeId, category, subcategory, productId: productData?.productId, images: fileUrls.map((fileResponse) => fileResponse.serverData.fileUrl)}
 
-        const updateForm = { ...productForm, productId: productData!.productId}
-        setIsSubmitting(true);
+        const response = await createOrUpdateProduct(productForm)
 
-        if(productData){
-            const data = await updateProduct(updateForm)
-        } else {
-            const data = await createProduct(productForm)
-        }
         
         toast.success("Successfully created product")
 
         setIsSubmitting(false);
-        form.reset();
-        setFileUrls([]);
+        // form.reset();
+        // setFileUrls([]);
 
 
     };

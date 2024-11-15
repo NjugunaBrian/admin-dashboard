@@ -2,25 +2,12 @@
 
 import db from "@/db/drizzle";
 import { ProductTable } from "@/db/schema";
+import { ProductForm } from "@/lib/types";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
-type ProductData = {
-    name: string,
-    description: string,
-    storeId: string,
-    price: string,
-    inventory: number,
-    tags: string[] | null,
-    images: string[] | null
-}
-
-interface ProductUpdate extends ProductData {
-    productId: string
-}
-
 //CREATE SINGLE PRODUCT
-export const createProduct = async (productData: ProductData) => {
+export const createProduct = async (productData: ProductForm) => {
 
     try{
         const product = await db.insert(ProductTable).values(productData)
@@ -34,6 +21,25 @@ export const createProduct = async (productData: ProductData) => {
         console.error(err);
     }
 
+}
+
+//CREATE OR UPDATE PRODUCT
+export const createOrUpdateProduct = async(productData: ProductForm) => {
+    try{
+        let product;
+
+        if(!productData.productId || productData.productId === undefined){
+            product = await createProduct(productData)
+        } else {
+            product = await updateProduct(productData)
+        }
+
+        revalidatePath('/admin/stores');
+        return product;
+
+    } catch(err){
+        console.error(err);
+    }
 }
 
 //GET PRODUCTS
@@ -86,8 +92,8 @@ export const getFeaturedProducts = async() => {
 }
 
 //UPDATE SINGLE PRODUCT
-export const updateProduct = async (productData: ProductUpdate) => {
-    const { productId } = productData;
+export const updateProduct = async (productData: ProductForm) => {
+    const productId  = productData.productId!;
 
     try{
         const product = await db.update(ProductTable).set(productData)
