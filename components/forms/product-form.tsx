@@ -17,7 +17,7 @@ import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, Tabl
 import FileInput from '../elements/file-input';
 import { productSchema } from '../../lib/validators';
 import { FileResponse } from '@/lib/types';
-import { createOrUpdateProduct, createProduct, updateProduct } from '@/actions/product';
+import { createOrUpdateProduct } from '@/actions/product';
 import { getCategories } from '@/actions/site';
 import { Product } from '@/db/schema';
 
@@ -79,8 +79,8 @@ const ProductForm = ({ storeId, productData }: ProductFormProps) => {
         toast.success("Successfully created product")
 
         setIsSubmitting(false);
-        // form.reset();
-        // setFileUrls([]);
+        form.reset();
+        setFileUrls([]);
 
 
     };
