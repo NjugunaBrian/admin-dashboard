@@ -33,7 +33,7 @@ export function useSiteConfig(){
             try{
                 const categories = await getCategories();
                 const config = {
-                    name: "Mismatchd",
+                    name: "MisunderStood",
                     description: "An ecommerce app with an integrated CMS dashboard built with NextJS and PostgreSQL.",
                     url: "https://vinylshop.vercel.app",
                     ogImage: "",
