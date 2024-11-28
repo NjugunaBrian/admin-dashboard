@@ -100,7 +100,7 @@ export const getStoreProducts = async(storeId: string) => {
 //GET FEATURED PRODUCTS
 export const getFeaturedProducts = async() => {
     try{
-        const products = await db.select().from(ProductTable).limit(5)
+        const products = await db.select().from(ProductTable).limit(6)
         return products
 
     } catch (err){

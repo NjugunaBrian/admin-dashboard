@@ -1,6 +1,6 @@
+import React from "react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { useSiteConfig } from "../_config/useSiteConfig";
-import React from "react";
 import { cn } from "@/lib/utils";
 
 

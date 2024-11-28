@@ -1,6 +1,6 @@
 import { getFeaturedProducts } from "@/actions/product";
 import FeatureContent from "./feature-content";
-import ProductCard from "@/components/elements/product-card";
+import ProductsDisplay from "./products-display";
 
 
 const FeatureProducts = async() => {
@@ -8,11 +8,7 @@ const FeatureProducts = async() => {
 
     return (
         <FeatureContent title='Feature Products' subtitle='Explore our feature products' href='/products' linkName='View Products'>
-            <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-3 gap-2" >
-                {products?.map((product) => (
-                    <ProductCard key={product.productId} {...product} />
-                ))}
-            </div>       
+            <ProductsDisplay products={products!} />       
         </FeatureContent>
     )
 
