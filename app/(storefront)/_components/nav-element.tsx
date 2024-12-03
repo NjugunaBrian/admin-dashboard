@@ -1,10 +1,12 @@
 import React from "react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
-import { useSiteConfig } from "../_config/useSiteConfig";
 import { cn } from "@/lib/utils";
+import { useSiteConfig } from "@/app/(storefront)/_config/useSiteConfig";
 
 
 const NavElement = () => {
+
+    console.log("useSiteConfig:", useSiteConfig);
 
     const { siteConfig } = useSiteConfig();
 
@@ -40,8 +42,8 @@ const NavElement = () => {
                             </NavigationMenuContent>
                         </NavigationMenuItem>
 
-                        {siteConfig && siteConfig.mainNav.map((nav) => (
-                            <NavigationMenuItem key={nav.title}>
+                        {siteConfig && siteConfig.mainNav.map((nav, index) => (
+                            <NavigationMenuItem key={index}>
                                 <NavigationMenuTrigger className="text-muted-foreground text-lg capitalize">
                                     {nav.title}
                                 </NavigationMenuTrigger>

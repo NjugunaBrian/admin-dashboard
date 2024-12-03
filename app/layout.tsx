@@ -42,7 +42,7 @@ export default function RootLayout({
             <CartProvider>
               <SiteShell>
                 {children}
-                <Toaster />
+                <Toaster richColors />
               </SiteShell>
             </CartProvider>  
 

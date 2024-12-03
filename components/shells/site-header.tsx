@@ -2,10 +2,10 @@ import { SignedIn, SignedOut } from '@clerk/nextjs'
 import Link from 'next/link'
 import React, { ReactNode } from 'react'
 import UserButton from '../elements/user-button'
-import { Button } from '../ui/button'
 import CartSheet from '../cart/cart-sheet'
 import { cn } from '@/lib/utils'
 import MobileNav from '../elements/mobile-nav'
+import SignInButton from '../elements/sign-in-button'
 
 
 interface SiteHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -19,7 +19,7 @@ const SiteHeader = ({children, className } : SiteHeaderProps) => {
         <Link href={'/'} className='font-bold text-xl'>Vinyls</Link>
         {children}
         <div className='flex items-center gap-2'>
-            {children && <CartSheet />}
+            <CartSheet />
             <SignedIn>
               <UserButton />
             </SignedIn>
@@ -28,9 +28,7 @@ const SiteHeader = ({children, className } : SiteHeaderProps) => {
 
             <SignedOut>
               <Link href={'/sign-in'}>
-                <Button>
-                  Sign In
-                </Button>
+                <SignInButton />
               </Link>
             </SignedOut>
         </div>

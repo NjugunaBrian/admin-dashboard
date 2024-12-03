@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useSiteConfig } from "@/app/(storefront)/_config/useSiteConfig";
+import { useSiteConfig }from "@/app/(storefront)/_config/useSiteConfig";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";

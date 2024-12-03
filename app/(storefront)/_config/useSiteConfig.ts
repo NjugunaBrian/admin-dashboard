@@ -1,3 +1,5 @@
+"use client";
+
 import { getCategories } from "@/actions/site";
 import { useEffect, useState } from "react";
 
