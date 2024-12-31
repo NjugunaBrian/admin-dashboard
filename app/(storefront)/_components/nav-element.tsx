@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
@@ -23,7 +25,7 @@ const NavElement = () => {
                                 <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                                     <li className="row-span-3">
                                         <NavigationMenuLink asChild>
-                                            <a className="flex flex-col h-ful w-full select-none justify-end rounded-md no-underline outline-none bg-gradient-to-b from-muted/50 to-muted focus:shadow-md" href="/">
+                                            <a className="flex flex-col h-full w-full select-none justify-end rounded-md p-6 no-underline outline-none bg-gradient-to-b from-muted/50 to-muted focus:shadow-md" href="/">
                                                 <div className="font-medium mb-2 mt-4 text-lg">
                                                     {siteConfig!.name}
                                                 </div>
