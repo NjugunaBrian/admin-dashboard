@@ -14,10 +14,10 @@ const StorefrontBanner = () => {
             </Link>
 
             <h1 className='bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent lg:text-7xl text-5xl font-bold'>
-                No trends, just statement. Dress Loud. Express Yourself Loud.
+                No compromises, just freshness. Eat fresh. Live healthy.
             </h1>
             <p className='text-muted-foreground lg:text-xl'>
-                Vinyl is a new way of listening to your favorite music.
+                FarmToHouse is a fresh way of shopping for groceries. We bring the farm to your house.
             </p>
             <div className='flex gap-2'>
                 <Link href={'#'}>

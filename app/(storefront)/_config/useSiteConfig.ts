@@ -35,9 +35,9 @@ export function useSiteConfig(){
             try{
                 const categories = await getCategories();
                 const config = {
-                    name: "MisunderStood",
-                    description: "An ecommerce app with an integrated CMS dashboard built with NextJS and PostgreSQL.",
-                    url: "https://vinylshop.vercel.app",
+                    name: "FarmToHouse",
+                    description: "A groceries ecommerce app with an integrated CMS dashboard built with NextJS and PostgreSQL.",
+                    url: "https://groceriestore.vercel.app",
                     ogImage: "",
                     siteNav: {
                         title: "Store-front",

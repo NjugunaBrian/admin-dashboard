@@ -16,7 +16,7 @@ interface SiteHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
 const SiteHeader = ({children, className } : SiteHeaderProps) => {
   return (
     <header className={cn('flex z-50 justify-between items-center border-b h-16 gap-2 sticky top-0 left-0 right-0 bg-background', className)}>
-        <Link href={'/'} className='font-bold text-xl'>Vinyls</Link>
+        <Link href={'/'} className='font-bold text-xl'>Groceries</Link>
         {children}
         <div className='flex items-center gap-2'>
             <CartSheet />
