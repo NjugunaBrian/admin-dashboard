@@ -6,16 +6,14 @@ const layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     return (
         <div className='min-h-screen flex flex-col'>
             <SiteHeader />
-            <div className='grid lg:flex h-[calc(100vh-4rem)]'>
+            <div className='grid lg:flex h-[calc(100vh-4rem)] w-screen'>
                 <aside className='border-r w-80 hidden lg:block'>
                     <SidebarNav />
                 </aside>
                 <div className='w-full px-6 py-2'>
                     {children}
                 </div>
-
-            </div>
-            
+            </div>           
         </div>
     )
 }

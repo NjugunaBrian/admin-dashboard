@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 const SignInButton = () => {
     return (
         <div>
-            <Button onClick={() => toast.info("Hey there. Test Email:test@example.com, Password: password")}>
+            <Button onClick={() => toast.info("Hey there. Test Email:demoexample1000@gmail.com, Password: passwordForGroceries")}>
                 Sign in.
             </Button>
         </div>

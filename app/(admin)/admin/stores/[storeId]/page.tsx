@@ -48,7 +48,6 @@ const Page = () => {
         </Link>
         
         {productsData && <ProductTable products={productsData} />}
-
     </ContentShell>
   )
 }
