@@ -6,7 +6,7 @@ interface SiteShellProps {
 
 const SiteShell = ({ children }: SiteShellProps) => {
     return (
-        <div className={"overflow-hidden grid place-items-center"}>
+        <div className={"px-2 lg:px-4 overflow-y-auto overflow-x-hidden grid place-items-center"}>
             <div className="w-full max-w-[1400px]">
                 {children}
             </div>
