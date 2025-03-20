@@ -72,7 +72,7 @@ export function useSiteConfig(){
                                 items: [],
                             },
                             ...category.subcategories.map((subcategory) => ({
-                                title: category.title,
+                                title: subcategory.title,
                                 href: `products?subCategory=${subcategory.title}`,
                                 description: subcategory.description,
                                 items: [],
