@@ -39,7 +39,7 @@ const Product = () => {
     return (
         productData && 
         <ContentShell title={productData.name}>
-            <div className='md:flex lg:flex gap-12'>
+            <div className='w-screen md:flex lg:flex gap-12'>
                 <div className='max-w-2xl w-full lg:m-0 mb-8'>
                     <Image
                        src={productData.images![0]} 

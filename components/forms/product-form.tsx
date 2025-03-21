@@ -73,7 +73,7 @@ const ProductForm = ({ storeId, productData }: ProductFormProps) => {
         const productForm = { name, description, price, inventory: Number(inventory), tags: [tags], 
             storeId, category, subcategory, productId: productData?.productId, images: fileUrls.map((fileResponse) => fileResponse.serverData.fileUrl)}
 
-        const response = await createOrUpdateProduct(productForm)
+        await createOrUpdateProduct(productForm)
 
         
         toast.success("Successfully created product")
@@ -101,9 +101,9 @@ const ProductForm = ({ storeId, productData }: ProductFormProps) => {
                    name='name'
                    render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Store name</FormLabel>
+                        <FormLabel>Product name</FormLabel>
                         <FormControl>
-                            <Input placeholder='Add a store name' {...field} />
+                            <Input placeholder='Add a product name' {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
