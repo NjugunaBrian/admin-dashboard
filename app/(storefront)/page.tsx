@@ -3,9 +3,8 @@ import React from 'react'
 import FeatureProducts from './_components/feature-products'
 import FeatureStores from './_components/feature-stores'
 import StorefrontBanner from './_components/storefront-banner'
-import { ProductsPageProps } from '@/lib/types'
 
-const Home = async({ searchParams }: ProductsPageProps) => {
+const Home = () => {
   return (
     <div className='flex flex-col items-center space-y-32'>
       {/*<div className='h-[calc(100vh-9rem)] object-cover object-center overflow-hidden relative'>

@@ -48,7 +48,7 @@ export const MultiUploader = ({ addFiles, triggerDialog}: { addFiles: (to: FileR
         setIsSubmitting(true);
 
         try{
-            const result = await toast.promise(startUpload(files), {
+            await toast.promise(startUpload(files), {
                 loading: 'Uploading...',
                 success: () => 'Uploaded successfully!',
                 error: () => 'Failed to upload!'

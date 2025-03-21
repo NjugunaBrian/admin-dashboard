@@ -1,10 +1,10 @@
-# [FreshCart]
+# [FreshCart](add link)
 
 This is an [Next.js](https://nextjs.org) e-commerce groceries shop with an integrated CMS dashboard. The project is bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-[![StoreFront](./public/images/github%20storefront%20banner.png)]
+![StoreFront](./public/images/github%20storefront%20banner.png)
 
-[![Feature Products](./public/images/github%20feature%20products.png)]
+![Feature Products](./public/images/github%20feature%20products.png)
 
 ## Tech Stack
 

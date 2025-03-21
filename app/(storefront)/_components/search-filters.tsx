@@ -18,25 +18,25 @@ type CategoryProps = {
 const SearchFilters = () => {
     const [categories, setCategories] = useState<CategoryProps[] | []>([]);
 
-    const DEFAULT_FILTERS = {
-        priceFrom: '',
-        priceTo: '',
-        order: '',
-        orderBy: 'price',
-        category: '',
-        subCategory: ''
-    };
+    // const DEFAULT_FILTERS = {
+    //     priceFrom: '',
+    //     priceTo: '',
+    //     order: '',
+    //     orderBy: 'price',
+    //     category: '',
+    //     subCategory: ''
+    // };
 
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
     
-    const priceFrom = searchParams.get('priceFrom')
-    const priceTo = searchParams.get('priceTo')
-    const order = searchParams.get('order')
-    const orderBy = searchParams.get('orderBy')
-    const category = searchParams.get('category')
-    const subCategory = searchParams.get('subCategory')
+    searchParams.get('priceFrom')
+    searchParams.get('priceTo')
+    searchParams.get('order')
+    searchParams.get('orderBy')
+    searchParams.get('category')
+    searchParams.get('subCategory')
 
     const createQueryString = useCallback((name: string, value: string) => {
         const params = new URLSearchParams(searchParams.toString())
