@@ -20,7 +20,7 @@ const EditProduct = () => {
 
     useEffect(() => {
         fetchProduct();
-    }, [])
+    })
 
     return (
         <ContentShell title="Edit Product" subtitle="Add or edit details to your product">
