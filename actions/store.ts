@@ -111,7 +111,7 @@ export const getSingleStoreProducts = async(storeId: string) => {
 //DELETE STORE
 export const deleteStore = async(storeId: string) => {
     try{
-      const deletedStore = await db.delete(StoreTable).where(eq(StoreTable.storeId, storeId))
+      await db.delete(StoreTable).where(eq(StoreTable.storeId, storeId))
       return "Store deleted successfully"
       
     } catch(err){

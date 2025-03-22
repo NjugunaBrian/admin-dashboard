@@ -37,13 +37,21 @@ export const useCart = () => {
 
 const CartProvider: React.FC<CartProviderProps> = ({children}) => {
 
-    const cartString = localStorage.getItem('cart');
-    const parsedCart = cartString ? JSON.parse(cartString) : [];
-    const [cartItems, setCartItems] = useState<CartProduct[]>(Array.isArray(parsedCart) ? parsedCart : []);
+    const [cartItems, setCartItems] = useState<CartProduct[]>([]);
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-    }, [cartItems]);
+        setIsMounted(true); // Mark the component as mounted
+        const cartString = typeof window !== "undefined" ? localStorage.getItem("cart") : null;
+        const parsedCart = cartString ? JSON.parse(cartString) : [];
+        setCartItems(Array.isArray(parsedCart) ? parsedCart : []);
+    }, []);
+
+    useEffect(() => {
+        if (isMounted) {
+            localStorage.setItem("cart", JSON.stringify(cartItems));
+        }
+    }, [cartItems, isMounted]);
 
 
     const cartQuantity = Array.isArray(cartItems)

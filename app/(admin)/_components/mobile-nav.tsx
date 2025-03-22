@@ -1,4 +1,3 @@
-import MobileNav from '@/components/elements/mobile-nav'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetTrigger } from '@/components/ui/sheet'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
@@ -13,9 +12,6 @@ const MobileSideNav = () => {
                     <HamburgerMenuIcon />
                 </Button>
             </SheetTrigger>
-            <MobileNav>
-                placeholder
-            </MobileNav>
         </Sheet>
     </div>
   )
