@@ -23,8 +23,7 @@ const page = async () => {
         ))}
       </div>
 
-    </ContentShell>
-    
+    </ContentShell>    
   )
 }
 

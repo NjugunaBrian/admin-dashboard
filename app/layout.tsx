@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -39,12 +40,14 @@ export default function RootLayout({
       >
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+          <Suspense>
             <CartProvider>
               <SiteShell>
                 {children}
                 <Toaster richColors />
               </SiteShell>
-            </CartProvider>  
+            </CartProvider>
+            </Suspense>  
 
         </ThemeProvider>
       </body>

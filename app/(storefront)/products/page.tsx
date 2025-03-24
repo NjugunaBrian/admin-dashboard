@@ -2,8 +2,8 @@ import { getProducts } from "@/actions/product"
 import ProductsDisplay from "../_components/products-display"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
-import SearchFilters from "../_components/search-filters"
 import { ProductsPageProps } from "@/lib/types"
+import SearchFiltersClient from "../_components/search-filters-client"
 
 
 const Products = async({ searchParams }: ProductsPageProps) => {
@@ -21,7 +21,7 @@ const Products = async({ searchParams }: ProductsPageProps) => {
                     <SheetHeader>
                         <SheetTitle>Filters</SheetTitle>
                         <SheetDescription>
-                            <SearchFilters />
+                            <SearchFiltersClient />
                         </SheetDescription>
                     </SheetHeader>
                 </SheetContent>
